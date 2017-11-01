@@ -1,7 +1,7 @@
 package pool
 
 import (
-	"github.com/ckcfcc/basis/mathx"
+//"github.com/ckcfcc/basis/mathx"
 )
 
 const MinPO2 = 5  // 32 Byte
@@ -26,7 +26,7 @@ type BytesMgr struct {
 }
 
 func (bm *BytesMgr) Get(size int) (b []byte) {
-	p2s := mathx.MinPowerOf2(size)
+	//p2s := mathx.MinPowerOf2(size)
 
 	return b
 }
