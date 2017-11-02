@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"github.com/ckcfcc/basis/logx"
 	"math/rand"
 	"time"
 )
@@ -13,9 +13,9 @@ func main() {
 	for {
 		newRv := 5*1024 + rand.Intn(5*1024)
 		//log.Printf("第%04d次收包:%d字节\n", count+1, newRv)
-		log.Printf("20秒内平均流量:%f\n", getRate(&rvArr, 20, count, newRv))
+		logx.Infof("20秒内平均流量:%f\n", getRate(&rvArr, 20, count, newRv))
 		count++
-		time.Sleep(time.Millisecond * 200)
+		time.Sleep(time.Millisecond * 500)
 
 		// newRv := 5*1024 + rand.Intn(5*1024)
 		// log.Printf("第%04d次收包:%d字节\n", count+1, newRv)
