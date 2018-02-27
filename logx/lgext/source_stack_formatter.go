@@ -192,6 +192,8 @@ func (f *TextFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 		if entry.Message != "" {
 			f.appendKeyValue(b, "msg", entry.Message, lastKeyIdx >= 0)
 		}
+		// b.WriteByte('\t')
+		// b.WriteByte('\n')
 		for i, key := range keys {
 			f.appendKeyValue(b, key, entry.Data[key], lastKeyIdx != i)
 		}
@@ -260,9 +262,13 @@ func (f *TextFormatter) printColored(b *bytes.Buffer, entry *logrus.Entry, keys 
 		fmt.Fprintf(b, "%s %s%s "+messageFormat, colorScheme.TimestampColor(timestamp), level, prefix, message)
 	}
 	for _, k := range keys {
-		if k != "prefix" && k != "stack" && k != "dump" {
+		if k != "prefix" && k != "stack" && k != "dump" && k != "caller" {
 			v := entry.Data[k]
 			fmt.Fprintf(b, " %s=%+v", levelColor(k), v)
+		}
+		if k == "caller" {
+			v := entry.Data[k]
+			fmt.Fprintf(b, " \n\t%s", colorScheme.TimestampColor(fmt.Sprintf("%s=%s", k, v)))
 		}
 		if k == "stack" {
 			v := entry.Data[k]

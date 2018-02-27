@@ -353,12 +353,14 @@ func (this *entry) SetLevel(lv Level) {
 }
 
 func (this *entry) LogErrorf(format string, args ...interface{}) (err error) {
+	this.Level = _glogLv
 	err = fmt.Errorf(format, args...)
 	this.Error(err)
 	return
 }
 
 func (this *entry) Dump(buff []byte, msgs ...interface{}) {
+	this.Level = _glogLv
 	if this.Level != logrus.DebugLevel {
 		return
 	}
@@ -379,53 +381,66 @@ func (this *entry) Dumpf(buff []byte, format string, msgs ...interface{}) {
 }
 
 func (this *entry) With(k string, v interface{}) Logger {
+	this.Level = _glogLv
 	return (*entry)((*logrus.Entry)(this).WithField(k, v))
 }
 
 func (this *entry) Debug(msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Debug(msgs...)
 }
 
 func (this *entry) Info(msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Info(msgs...)
 }
 
 func (this *entry) Warn(msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Warn(msgs...)
 }
 
 func (this *entry) Error(msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Error(msgs...)
 }
 
 func (this *entry) Fatal(msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Fatal(msgs...)
 }
 
 func (this *entry) Panic(msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Panic(msgs...)
 }
 
 func (this *entry) Debugf(format string, msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Debugf(format, msgs...)
 }
 
 func (this *entry) Infof(format string, msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Infof(format, msgs...)
 }
 
 func (this *entry) Warnf(format string, msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Warnf(format, msgs...)
 }
 
 func (this *entry) Errorf(format string, msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Errorf(format, msgs...)
 }
 
 func (this *entry) Fatalf(format string, msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Fatalf(format, msgs...)
 }
 
 func (this *entry) Panicf(format string, msgs ...interface{}) {
+	this.Level = _glogLv
 	(*logrus.Entry)(this).Panicf(format, msgs...)
 }
