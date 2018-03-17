@@ -9,6 +9,7 @@ import (
 
 	ext "github.com/ckcfcc/basis/logx/lgext"
 	"github.com/sirupsen/logrus"
+	//"log"
 )
 
 var _glog = NewLog("GLOBAL")
@@ -300,6 +301,7 @@ func (this *logger) Panic(msgs ...interface{}) {
 }
 
 func (this *logger) Debugf(format string, msgs ...interface{}) {
+	//log.Printf("logger debugf lv:%v", this.lgr.Level)
 	if this.name != "" {
 		this.lgr.WithField("prefix", this.name).Debugf(format, msgs...)
 	} else {
